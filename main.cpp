@@ -29,9 +29,19 @@ Compilateur : Mingw-w64 g++ 11.1.0
 #include <limits>   // Pour le buffer
 #include <iomanip>  // Permet de setw pour la mise en page
 
+#define VIDER_BUFFER  cin.ignore(numeric_limits<streamsize>::max(), '\n')
+
+//Création d'une instruction pré-processeur qui quitte le programme
+#define TERMINER_PROGRAMME cout << "Presser ENTER pour quitter le programme" << endl; \
+                               cin.ignore(numeric_limits<streamsize>::max(), '\n')    \
+                               ; return EXIT_SUCCESS
+
+
 
 using namespace std;
-int main() {
+
+int main()
+{
 
     //-------------------------------------------------------------------
     //                       Déclaration de variables
@@ -68,9 +78,7 @@ int main() {
     const int PRECISION = 2;
     const int ESPACE    = 6;
 
-    //Création d'une instruction pré-processeur qui quitte le programme
-#define TERMINER_PROGRAMME cout << "Presser ENTER pour quitter le programme" << endl; \
-                               cin.ignore(numeric_limits<streamsize>::max(), '\n'); return 3
+
 
 
     //-------------------------------------------------------------------
@@ -104,7 +112,7 @@ int main() {
     //Saisie du nombre de bagage
     cout << "Combien de bagages transportez-vous ? (MAX 4):";
     cin >> nbrBagage;
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    VIDER_BUFFER;
 
     //Contrôle du nombre de bagage
     if(nbrBagage > MAX_BAGAGE or nbrBagage < 0){
