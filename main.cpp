@@ -1,9 +1,10 @@
 /*
 -----------------------------------------------------------------------------------
 Nom du fichier : TP2_GrpC_CourseTaxi.cpp
-Auteur(s) : Timothé Antille, Valentin Bonzon
+Auteurs originaux : Timothé Antille, Valentin Bonzon
+Nouveau auteurs : Ristic Christopher, Häffner Edwin
 Date creation : 06.10.2022
-Modification  : 11.10.2022
+Modification  : 12.10.2022
 Description : Ce programme à pour but d'afficher le prix d'une course de taxi
               en fonction :
               - du prix de base de la prise en charge
