@@ -68,7 +68,7 @@ int main() {
     const int ESPACE    = 6;
 
     //Création d'une instruction pré-processeur qui quitte le programme
-    #define TERMINER_PROGRAMME cout << "Presser ENTER pour quitter le programme" << endl; \
+#define TERMINER_PROGRAMME cout << "Presser ENTER pour quitter le programme" << endl; \
                                cin.ignore(numeric_limits<streamsize>::max(), '\n'); return 3
 
 
@@ -109,7 +109,7 @@ int main() {
     if(nbrBagage > MAX_BAGAGE or nbrBagage < 0){
 
         cout << "Veuillez saisir entre 0 et " << MAX_BAGAGE << " bagages au maximum" <<
-        endl;
+             endl;
         TERMINER_PROGRAMME;
 
     }
