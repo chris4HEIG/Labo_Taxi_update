@@ -144,7 +144,7 @@ int main() {
     }
 
     //Saisie de l'heure de départ
-    cout << "Quelle est l'heure de votre depart ? (MAX 23):";
+    cout << "Quelle est l'heure de votre depart ? [hh:mm] :";
     cin >> heureDepart;
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
