@@ -157,8 +157,9 @@ int main()
     cout << "Quelle est l'heure de votre depart ? [hh:mm] :";
     cin >> heureMinute;
 
-    bool verifieCaractere = false;
+    bool verifieCaractere = false; // pour passer des heures aux minutes
 
+    // vérification de chaque caractère dans la string heureMinute
     for (char lettre : heureMinute)
     {
         if(lettre == ':')
