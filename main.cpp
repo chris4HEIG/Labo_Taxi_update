@@ -28,6 +28,7 @@ Compilateur : Mingw-w64 g++ 11.1.0
 #include <iostream> // Ajoute les opérateurs de flux
 #include <limits>   // Pour le buffer
 #include <iomanip>  // Permet de setw pour la mise en page
+#include <string>   // Pour le texte
 
 #define VIDER_BUFFER  cin.ignore(numeric_limits<streamsize>::max(), '\n')
 
@@ -67,6 +68,7 @@ int main()
     //Déclaration des variables
     int     nbrBagage;
     int     heureDepart;
+    string  heureMinute, heure, minute;
     double  distance;
     int     vitesse;
     double  temps;
@@ -115,18 +117,17 @@ int main()
     VIDER_BUFFER;
 
     //Contrôle du nombre de bagage
-    if(nbrBagage > MAX_BAGAGE or nbrBagage < 0){
-
-        cout << "Veuillez saisir entre 0 et " << MAX_BAGAGE << " bagages au maximum" <<
-             endl;
+    if(nbrBagage > MAX_BAGAGE or nbrBagage < 0)
+    {
+        cout << "Veuillez saisir entre 0 et " << MAX_BAGAGE << " bagages au maximum"
+             << endl;
         TERMINER_PROGRAMME;
-
     }
 
     //Saisie de la distance
     cout << "Quelle distance[km] allez-vous parcourir ? (MAX 500):";
     cin >> distance;
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    VIDER_BUFFER;
 
     //Contrôle de la distance
     if(distance > MAX_KM or distance < 0){
@@ -138,30 +139,50 @@ int main()
     //Saisie de la vitesse
     cout << "A quelle vitesse[km/h] allez-vous voyager ? (50 - 120):";
     cin >> vitesse;
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    VIDER_BUFFER;
 
     //Contrôle de la vitesse
-    if(vitesse >= MIN_VITESSE and vitesse <= MAX_VITESSE){
-
+    if(vitesse >= MIN_VITESSE and vitesse <= MAX_VITESSE)
+    {
         //Calculer le temps en minutes
         temps = distance / vitesse * 60;
-
-    }else{
+    }
+    else
+    {
         cout << "Veuillez saisir une vitesse entre " << MIN_VITESSE << " et " << MAX_VITESSE << "km/h" << endl;
         TERMINER_PROGRAMME;
     }
 
     //Saisie de l'heure de départ
     cout << "Quelle est l'heure de votre depart ? [hh:mm] :";
-    cin >> heureDepart;
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    cin >> heureMinute;
+
+    bool verifieCaractere = false;
+
+    for (char lettre : heureMinute)
+    {
+        if(lettre == ':')
+        {
+           verifieCaractere = true;
+        }
+        else if(lettre != ':' and verifieCaractere == false)
+        {
+            heure += lettre;
+        }
+        else if(verifieCaractere == true)
+        {
+            minute += lettre;
+        }
+    }
+     cout << heure << ":" << minute;
+
 
     //Contrôle de l'heure de départ
-    if(heureDepart > MAX_HEURE or heureDepart < 0){
-
-        cout << "Veuillez saisir une heure de depart correcte" << endl;
-        TERMINER_PROGRAMME;
-    }
+//    if(heureDepart > MAX_HEURE or heureDepart < 0)
+//    {
+//        cout << "Veuillez saisir une heure de depart correcte" << endl;
+//        TERMINER_PROGRAMME;
+//    }
 
     //-------------------------------------------------------------------
     //                       Affichage de la commande
@@ -182,14 +203,13 @@ int main()
     //-------------------------------------------------------------------
 
     //Vérifier si c'est un tarif de jour ou de nuit
-    if(heureDepart >= DEBUT_JOUR and heureDepart <= FIN_JOUR){
-
+    if(heureDepart >= DEBUT_JOUR and heureDepart <= FIN_JOUR)
+    {
         totalCourse = PRIX_JOUR * temps;
-
-    }else{
-
+    }
+    else
+    {
         totalCourse = PRIX_NUIT * temps;
-
     }
 
     //Calcul du total
