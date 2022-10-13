@@ -68,7 +68,9 @@ int main()
     //Déclaration des variables
     int     nbrBagage;
     int     heureDepart;
-    string  heureMinute, heure, minute;
+    string     heureMinute;
+    int heure, minute;
+    char    deuxPoints;
     double  distance;
     int     vitesse;
     double  temps;
@@ -155,27 +157,22 @@ int main()
 
     //Saisie de l'heure de départ
     cout << "Quelle est l'heure de votre depart ? [hh:mm] :";
-    cin >> heureMinute;
+    cin >> heure;
+    cin.ignore(numeric_limits<streamsize>::max(), ':');
+    cin >> minute;
+    cout << heure << ":" << minute;
 
-    bool verifieCaractere = false; // pour passer des heures aux minutes
-
-    // vérification de chaque caractère dans la string heureMinute
-    for (char lettre : heureMinute)
+    if (deuxPoints != ':')
     {
-        if(lettre == ':')
-        {
-           verifieCaractere = true;
-        }
-        else if(lettre != ':' and verifieCaractere == false)
-        {
-            heure += lettre;
-        }
-        else if(verifieCaractere == true)
-        {
-            minute += lettre;
-        }
+        cout << "TCHEU Y SONT OU LES DEUX POINTS?!" << endl;
+        TERMINER_PROGRAMME;
     }
-     cout << heure << ":" << minute;
+
+    cout << heure << ":" << minute << endl;
+
+
+
+
 
 
     //Contrôle de l'heure de départ
