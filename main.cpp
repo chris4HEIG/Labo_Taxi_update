@@ -59,15 +59,17 @@ int main()
     //Constantes des intervalles pour les tests
     const int MAX_BAGAGE    = 4;
     const int MAX_KM        = 500;
-    const int JOUR_MIN      = 8;
-    const int JOUR_MAX      = 20;
+    const int JOUR_MIN      = 8,
+              JOUR_MAX      = 20;
+    const int JOUR_MIN_MINUTE = 8*60,
+              JOUR_MAX_MINUTE = 20*60;
     const int MAX_HEURE     = 23;
     const int MAX_VITESSE   = 120;
     const int MIN_VITESSE   = 50;
 
     //Déclaration des variables
     int     nbrBagage;
-    int     heureDepart;
+    int     heureDepart, minuteDepart;
     string     heureMinute;
     int heure, minute;
     char    deuxPoints;
@@ -157,18 +159,18 @@ int main()
 
     //Saisie de l'heure de départ
     cout << "Quelle est l'heure de votre depart ? [hh:mm] :";
-    cin >> heure;
+    cin >> heureDepart;
     cin.ignore(numeric_limits<streamsize>::max(), ':');
-    cin >> minute;
+    cin >> minuteDepart;
     cout << heure << ":" << minute;
 
-    if (deuxPoints != ':')
-    {
-        cout << "TCHEU Y SONT OU LES DEUX POINTS?!" << endl;
-        TERMINER_PROGRAMME;
-    }
-
-    cout << heure << ":" << minute << endl;
+//    if (deuxPoints != ':')
+//    {
+//        cout << "TCHEU Y SONT OU LES DEUX POINTS?!" << endl;
+//        TERMINER_PROGRAMME;
+//    }
+//
+//    cout << heure << ":" << minute << endl;
 
 
 
@@ -203,15 +205,20 @@ int main()
     //Vérifier si c'est un tarif de jour ou de nuit
     //Il faut donc regarder l'heure de départ et l'heure d'arrivée.
     //Si l'heure de dépa
-    if (JOUR_MIN > (heureDepart and heureArrivee) > JOUR_MAX)  {
-        totalCourse = temps * PRIX_JOUR;
-    }
-    else if ((heureDepart and heureArrivee)< JOUR_MIN){
-        totalCourse = temps * PRIX_NUIT;
-    }
-    else if ((temps < 12) and (heureDepart and heureArrivee)> JOUR_MAX){
-        totalCourse = temps * PRIX_NUIT
-    }
+    int  tempsDepartMinute = heureDepart * 60 + minuteDepart; //Valeur départ en minute
+    int  tempsCourseMinute = 60*distance / vitesse;
+
+    cout << tempsCourseMinute << endl;
+
+//    if (JOUR_MIN > (heureDepart and heureArrivee) > JOUR_MAX)  {
+//        totalCourse = temps * PRIX_JOUR;
+//    }
+//    else if ((heureDepart and heureArrivee)< JOUR_MIN){
+//        totalCourse = temps * PRIX_NUIT;
+//    }
+//    else if ((temps < 12) and (heureDepart and heureArrivee)> JOUR_MAX){
+//        totalCourse = temps * PRIX_NUIT
+//    }
 
 
     //Calcul du total
