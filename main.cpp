@@ -160,7 +160,11 @@ int main()
     //Saisie de l'heure de départ
     cout << "Quelle est l'heure de votre depart ? [hh:mm] :";
     cin >> heureDepart;
-    cin.ignore(numeric_limits<streamsize>::max(), ':');
+    if(!(cin.ignore(numeric_limits<streamsize>::max(), ':')))
+    {
+        cout << "TCHEU Y SONT OU LES DEUX POINTS?!" << endl;
+        TERMINER_PROGRAMME;
+    }
     cin >> minuteDepart;
     cout << heure << ":" << minute;
 
@@ -229,7 +233,7 @@ int main()
 
         }
 
-        else if ((tempsDepartMinute > JOUR_MAX_MINUTE) and (tempsArriveeMinute > JOUR_MAX_MINUTE)) {
+        else if ((tempsDepartMinute > JOUR_MAX_MINUTE) and (tempsArriveeMinute > JOUR_MAX_MINUTE)){
 
             totalCourse = temps * PRIX_NUIT;
 
@@ -241,12 +245,12 @@ int main()
                           + ((double)tempsArriveeMinute - JOUR_MIN_MINUTE)*PRIX_JOUR);
 
         }
-
+/*
         else if ((tempsDepartMinute > JOUR_MIN_MINUTE) and (tempsArriveeMinute < JOUR_MIN_MINUTE)){
 
             totalCourse =
 
-        }
+        }*/
     }
 
 
