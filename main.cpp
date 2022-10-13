@@ -178,11 +178,11 @@ int main()
 
 
     //Contrôle de l'heure de départ
-    if((int)heure > MAX_HEURE or heureDepart < 0)
-    {
-        cout << "Veuillez saisir une heure de depart correcte" << endl;
-        TERMINER_PROGRAMME;
-    }
+//    if((int)heure > MAX_HEURE or heureDepart < 0)
+//    {
+//        cout << "Veuillez saisir une heure de depart correcte" << endl;
+//        TERMINER_PROGRAMME;
+//    }
 
     //-------------------------------------------------------------------
     //                       Affichage de la commande
@@ -207,18 +207,23 @@ int main()
     //Si l'heure de dépa
     int  tempsDepartMinute = heureDepart * 60 + minuteDepart; //Valeur départ en minute
     int  tempsCourseMinute = 60*distance / vitesse;
+    int  tempsArriveeMinute = tempsDepartMinute + tempsCourseMinute;
+
+    if (tempsArriveeMinute >= 1440){ //
+        tempsArriveeMinute = tempsArriveeMinute - 1440;
+    }
 
     cout << tempsCourseMinute << endl;
 
-//    if (JOUR_MIN > (heureDepart and heureArrivee) > JOUR_MAX)  {
-//        totalCourse = temps * PRIX_JOUR;
-//    }
-//    else if ((heureDepart and heureArrivee)< JOUR_MIN){
-//        totalCourse = temps * PRIX_NUIT;
-//    }
-//    else if ((temps < 12) and (heureDepart and heureArrivee)> JOUR_MAX){
-//        totalCourse = temps * PRIX_NUIT
-//    }
+    if (JOUR_MIN_MINUTE > (heureDepart and heureDepart + tempsCourseMinute) > JOUR_MAX_MINUTE)  {
+        totalCourse = temps * PRIX_JOUR;
+    }
+    else if ((heureDepart and heureArrivee)< JOUR_MIN){
+        totalCourse = temps * PRIX_NUIT;
+    }
+    else if ((temps < 12) and (heureDepart and heureArrivee)> JOUR_MAX){
+        totalCourse = temps * PRIX_NUIT
+    }
 
 
     //Calcul du total

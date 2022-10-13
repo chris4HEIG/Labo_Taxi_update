@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/ChrisPC/Downloads/Cours/prog/labo3/Labo_Taxi_update
+# Install script for directory: C:/Users/edwin/OneDrive - HESSO/HEIG-VD/PRBG1/TPs/TP3/Labo_Taxi_update
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Users/ChrisPC/Downloads/Cours/prog/labo3/Labo_Taxi_update/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/Users/edwin/OneDrive - HESSO/HEIG-VD/PRBG1/TPs/TP3/Labo_Taxi_update/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
