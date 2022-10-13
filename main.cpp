@@ -203,26 +203,50 @@ int main()
     //-------------------------------------------------------------------
 
     //Vérifier si c'est un tarif de jour ou de nuit
-    //Il faut donc regarder l'heure de départ et l'heure d'arrivée.
-    //Si l'heure de dépa
     int  tempsDepartMinute = heureDepart * 60 + minuteDepart; //Valeur départ en minute
-    int  tempsCourseMinute = 60*distance / vitesse;
-    int  tempsArriveeMinute = tempsDepartMinute + tempsCourseMinute;
-
+    int  tempsCourseMinute = 60 * distance / vitesse; //Temps de la course en minute
+    int  tempsArriveeMinute = tempsDepartMinute + tempsCourseMinute; //Calcul du temps arrivée
+    bool apresMinuit = false;
+    //Fonction IF pour pouvoir passer du 23h59 à 00h00
     if (tempsArriveeMinute >= 1440){ //
         tempsArriveeMinute = tempsArriveeMinute - 1440;
+        apresMinuit = true;
     }
 
-    cout << tempsCourseMinute << endl;
+    //cout << tempsCourseMinute << endl;
+    if (!apresMinuit) { //On effectue ce if si nous restons dans la même journée
 
-    if (JOUR_MIN_MINUTE > (heureDepart and heureDepart + tempsCourseMinute) > JOUR_MAX_MINUTE)  {
-        totalCourse = temps * PRIX_JOUR;
-    }
-    else if ((heureDepart and heureArrivee)< JOUR_MIN){
-        totalCourse = temps * PRIX_NUIT;
-    }
-    else if ((temps < 12) and (heureDepart and heureArrivee)> JOUR_MAX){
-        totalCourse = temps * PRIX_NUIT
+        if (tempsDepartMinute > JOUR_MIN_MINUTE and tempsArriveeMinute > JOUR_MIN_MINUTE and
+            tempsDepartMinute < JOUR_MAX_MINUTE and tempsArriveeMinute < JOUR_MAX_MINUTE) {
+
+            totalCourse = temps * PRIX_JOUR;
+
+        }
+
+        else if ((tempsDepartMinute < JOUR_MIN_MINUTE) and (tempsArriveeMinute < JOUR_MIN_MINUTE)){
+
+            totalCourse = temps * PRIX_NUIT;
+
+        }
+
+        else if ((tempsDepartMinute > JOUR_MAX_MINUTE) and (tempsArriveeMinute > JOUR_MAX_MINUTE)) {
+
+            totalCourse = temps * PRIX_NUIT;
+
+        }
+
+        else if ((tempsDepartMinute < JOUR_MIN_MINUTE) and (tempsArriveeMinute > JOUR_MIN_MINUTE)){
+
+            totalCourse = ((((double)JOUR_MIN_MINUTE - tempsDepartMinute) * (-1) * PRIX_NUIT)
+                          + ((double)tempsArriveeMinute - JOUR_MIN_MINUTE)*PRIX_JOUR);
+
+        }
+
+        else if ((tempsDepartMinute > JOUR_MIN_MINUTE) and (tempsArriveeMinute < JOUR_MIN_MINUTE)){
+
+            totalCourse =
+
+        }
     }
 
 
