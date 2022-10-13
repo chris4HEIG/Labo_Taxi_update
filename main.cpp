@@ -176,11 +176,11 @@ int main()
 
 
     //Contrôle de l'heure de départ
-//    if(heureDepart > MAX_HEURE or heureDepart < 0)
-//    {
-//        cout << "Veuillez saisir une heure de depart correcte" << endl;
-//        TERMINER_PROGRAMME;
-//    }
+    if((int)heure > MAX_HEURE or heureDepart < 0)
+    {
+        cout << "Veuillez saisir une heure de depart correcte" << endl;
+        TERMINER_PROGRAMME;
+    }
 
     //-------------------------------------------------------------------
     //                       Affichage de la commande
@@ -201,14 +201,18 @@ int main()
     //-------------------------------------------------------------------
 
     //Vérifier si c'est un tarif de jour ou de nuit
-    if(heureDepart >= DEBUT_JOUR and heureDepart <= FIN_JOUR)
-    {
-        totalCourse = PRIX_JOUR * temps;
+    //Il faut donc regarder l'heure de départ et l'heure d'arrivée.
+    //Si l'heure de dépa
+    if (JOUR_MIN > (heureDepart and heureArrivee) > JOUR_MAX)  {
+        totalCourse = temps * PRIX_JOUR;
     }
-    else
-    {
-        totalCourse = PRIX_NUIT * temps;
+    else if ((heureDepart and heureArrivee)< JOUR_MIN){
+        totalCourse = temps * PRIX_NUIT;
     }
+    else if ((temps < 12) and (heureDepart and heureArrivee)> JOUR_MAX){
+        totalCourse = temps * PRIX_NUIT
+    }
+
 
     //Calcul du total
     totalBagage = nbrBagage * PRIX_BAGAGE;
